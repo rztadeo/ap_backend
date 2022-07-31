@@ -4,6 +4,7 @@
  */
 package org.rztadeo.apbackend.controller;
 
+import java.util.Collections;
 import java.util.List;
 import org.rztadeo.apbackend.model.Usuario;
 import org.rztadeo.apbackend.service.IUsuarioService;
@@ -34,7 +35,12 @@ public class UsuarioController {
     @CrossOrigin(origins = url)
     @GetMapping(path = "/usuarios/traer")
     public List<Usuario> getUsuarios() {
+        try {
         return interUsuario.getUsuarios();
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            return  Collections.emptyList();
+        }
     }
 
     @CrossOrigin(origins = url)
@@ -81,10 +87,15 @@ public class UsuarioController {
     @CrossOrigin(origins = url)
     @GetMapping("/usuarios/buscar/{nombre}")
     public List<Usuario> buscarUsuario(@PathVariable String nombre) {
+        try {
         List<Usuario> usuarios = interUsuario.findByNombre(nombre);
         return usuarios;
+    } catch (Exception e) {
+               System.out.print(e.getMessage());
+            return  Collections.emptyList();     
     }
-
+        
+    }
     @CrossOrigin(origins = url)
     @PostMapping("/login")
     public Sesion login(@RequestBody Sesion sesion) {
