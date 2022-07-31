@@ -27,7 +27,7 @@ public class PersonaController {
 
     @Autowired
     private IPersonaService interPersona;
-    private final String url = "http://localhost:4200";
+    private final String url = "https://argentina-programa-310722.web.app";
 
     @CrossOrigin(origins = url)
     @GetMapping(path = "/personas/traer")
